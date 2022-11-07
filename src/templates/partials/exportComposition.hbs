@@ -13,7 +13,6 @@ export type {{{name}}} = {{>type parent=name}};
 {{#unless @root.useUnionTypes}}
 
 export namespace {{{name}}} {
-
 	{{#each enums}}
 	{{#ifdef description deprecated}}
 	/**
@@ -30,9 +29,10 @@ export namespace {{{name}}} {
 		{{{name}}} = {{{value}}},
 		{{/each}}
 	}
+	{{#unless @last}}
 
+	{{/unless}}
 	{{/each}}
-
 }
 {{/unless}}
 {{/if}}

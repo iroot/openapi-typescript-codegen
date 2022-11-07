@@ -13,7 +13,6 @@ import type { OpenAPIConfig } from './OpenAPI';
 {{/equals}}
 
 export abstract class BaseHttpRequest {
-
 	{{#equals @root.httpClient 'angular'}}
 	constructor(
 		public readonly config: OpenAPIConfig,

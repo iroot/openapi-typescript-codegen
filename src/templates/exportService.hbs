@@ -38,15 +38,14 @@ import { request as __request } from '../core/request';
 {{/equals}}
 export class {{{name}}}{{{@root.postfix}}} {
 	{{#if @root.exportClient}}
-
 	constructor(public readonly httpRequest: BaseHttpRequest) {}
+
 	{{else}}
 	{{#equals @root.httpClient 'angular'}}
-
 	constructor(public readonly http: HttpClient) {}
+
 	{{/equals}}
 	{{/if}}
-
 	{{#each operations}}
 	/**
 	{{#if deprecated}}
@@ -56,7 +55,9 @@ export class {{{name}}}{{{@root.postfix}}} {
 	 * {{{escapeComment summary}}}
 	{{/if}}
 	{{#if description}}
+	{{#notEquals summary description}}
 	 * {{{escapeComment description}}}
+	{{/notEquals}}
 	{{/if}}
 	{{#unless @root.useOptions}}
 	{{#if parameters}}
@@ -113,7 +114,11 @@ export class {{{name}}}{{{@root.postfix}}} {
 			{{#if parametersQuery}}
 			query: {
 				{{#each parametersQuery}}
+				{{#equals prop name}}
+				{{{name}}},
+				{{else}}
 				'{{{prop}}}': {{{name}}},
+				{{/equals}}
 				{{/each}}
 			},
 			{{/if}}
@@ -147,6 +152,8 @@ export class {{{name}}}{{{@root.postfix}}} {
 			{{/if}}
 		});
 	}
+	{{#unless @last}}
 
+	{{/unless}}
 	{{/each}}
 }

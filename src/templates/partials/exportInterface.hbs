@@ -27,7 +27,6 @@ export type {{{name}}} = {
 {{#unless @root.useUnionTypes}}
 
 export namespace {{{name}}} {
-
 	{{#each enums}}
 	{{#if description}}
 	/**
@@ -39,9 +38,10 @@ export namespace {{{name}}} {
 		{{{name}}} = {{{value}}},
 		{{/each}}
 	}
+	{{#unless @last}}
 
+	{{/unless}}
 	{{/each}}
-
 }
 {{/unless}}
 {{/if}}
